@@ -1,8 +1,10 @@
 import torch
 import torch.optim as optim
 from model import Connect4Model
-from mcts import run_mcts, Node  # Assume run_mcts is a function you define in mcts.py for running MCTS
+from mcts import run_mcts, Node, prepare_board  # Assume run_mcts is a function you define in mcts.py for running MCTS
 from game import get_init_board, place_piece, is_win, is_board_full
+
+torch.autograd.set_detect_anomaly(True)
 
 # Set device
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -18,14 +20,19 @@ policy_criterion = torch.nn.CrossEntropyLoss()
 
 def train_step(board, policy_target, value_target):
     # Convert to tensors
-    board_tensor = torch.tensor(board, dtype=torch.float32).unsqueeze(0).to(device)
-    policy_target_tensor = torch.tensor(policy_target, dtype=torch.float32).to(device)
+    board_tensor = prepare_board(board).unsqueeze(0).to(device)
+    
+    # Extract the action index with the highest probability/visit count
+    action_index = policy_target.index(max(policy_target))
+    policy_target_tensor = torch.tensor([action_index], dtype=torch.long).to(device)
+    
     value_target_tensor = torch.tensor([value_target], dtype=torch.float32).to(device)
 
     # Forward pass
     optimizer.zero_grad()
     value, policy = model(board_tensor)
-    value_loss = value_criterion(value, value_target_tensor)
+
+    value_loss = value_criterion(value.squeeze(), value_target_tensor.squeeze())
     policy_loss = policy_criterion(policy, policy_target_tensor)
 
     # Backward and optimize
@@ -44,9 +51,9 @@ def collect_data_from_game():
     while not is_board_full(board) and not is_win(board, player_turn):
         root = Node(prior=0, turn=player_turn, state=board)
         action, policy_target = run_mcts(root, model, device)  # run_mcts to be implemented in mcts.py
-
+        print("Policy target from MCTS:", policy_target)
         # Record the state, policy target, and value target (which is unknown at this stage)
-        game_data.append((board.copy(), policy_target, None))
+        game_data.append([board.copy(), policy_target, None])
 
         # Make the move
         board = place_piece(board, player_turn, action)

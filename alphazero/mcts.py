@@ -14,8 +14,9 @@ class Node:
         self.visits = 0
 
     def expand(self, action_probs):
+        valid_moves = get_valid_moves(self.state)  # Get valid moves for the current state
         for action, prob in enumerate(action_probs):
-            if prob > 0:
+            if prob > 0 and valid_moves[action] == 1:
                 next_state = place_piece(board=self.state, player=self.turn, action=action)
                 self.children[action] = Node(prior=prob, turn=-self.turn, state=next_state)
 
@@ -38,6 +39,9 @@ def ucb_score(parent, child):
 
 def prepare_board(board):
     # Transform the board into a 3x6x7 tensor
+    # Channel 1: Player 1's pieces
+    # Channel 2: Player 2's pieces
+    # Channel 3: Empty spaces
     player1_channel = (board == 1).astype(float)
     player2_channel = (board == -1).astype(float)
     empty_channel = (board == 0).astype(float)

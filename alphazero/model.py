@@ -51,15 +51,13 @@ class Connect4Model(nn.Module):
 		res = x
 		x = F.relu(self.res1_bn1(self.res1_conv1(x)))
 		x = F.relu(self.res1_bn2(self.res1_conv2(x)))
-		x += res
-		x = F.relu(x)
+		x = F.relu(x + res)  # Modified line
 
 		# Res Block 2
 		res = x
 		x = F.relu(self.res2_bn1(self.res2_conv1(x)))
 		x = F.relu(self.res2_bn2(self.res2_conv2(x)))
-		x += res
-		x = F.relu(x)
+		x = F.relu(x + res)  # Modified line
 
 		# value head
 		v = F.relu(self.value_bn(self.value_conv(x)))

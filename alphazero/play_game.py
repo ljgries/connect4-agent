@@ -23,7 +23,7 @@ def play_game(model, device):
             board = place_piece(board, player_turn, action)
 
         player_turn *= -1  # Switch player
-        draw_board(board)  # Draw the board after each move
+        print(board)  # Draw the board after each move
 
     # Check the game outcome
     if is_win(board, 1):
@@ -36,7 +36,9 @@ def play_game(model, device):
 if __name__ == "__main__":
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     model = Connect4Model(device)
-    model.load_state_dict(torch.load('path_to_trained_model.pth', map_location=device))
+    model_name = 'liam_model_1.pth' # change to your trained model
+    model_path = 'models/' + model_name
+    model.load_state_dict(torch.load(model_path, map_location=device))
     model.to(device)
     model.eval()
 
