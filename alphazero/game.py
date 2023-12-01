@@ -11,9 +11,10 @@ def get_init_board():
     return np.zeros((6,7))
 
 def place_piece(board, player, action):
-    row_index = sum(board[:,action] == 0)-1
-    board[row_index,action] = player
-    return board
+    board_copy = np.copy(board)
+    row_index = sum(board_copy[:,action] == 0)-1
+    board_copy[row_index,action] = player
+    return board_copy
 
 def get_valid_moves(board):
     # return [0,1,1,1,0,1,1]
