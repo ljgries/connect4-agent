@@ -14,7 +14,7 @@ model = Connect4Model(device)
 model.train()
 
 # Optimizer and loss function
-optimizer = optim.Adam(model.parameters(), lr=0.001)
+optimizer = optim.Adam(model.parameters(), lr=0.01)
 value_criterion = torch.nn.MSELoss()
 policy_criterion = torch.nn.CrossEntropyLoss()
 
@@ -58,7 +58,7 @@ def collect_data_from_game():
         # Make the move
         board = place_piece(board, player_turn, action)
         player_turn *= -1  # Switch player
-        print(board)
+    print(board)
 
     # Assign value targets based on game outcome
     value_target = 1 if is_win(board, 1) else -1 if is_win(board, -1) else 0
