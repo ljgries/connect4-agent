@@ -1,6 +1,6 @@
 # connect4-agent
 
-Connect 4 agent implemented with MCTS and (potentially) neural nets.
+Connect 4 "Alpha Zero" agent implemented with MCTS and CNNs.
 
 ## Protocol
 
