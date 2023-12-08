@@ -1,7 +1,7 @@
 import torch
 import numpy as np
 import math
-from game import get_init_board, place_piece, get_valid_moves, is_board_full, is_win
+from game import place_piece, get_valid_moves, is_board_full, is_win
 
 # Define the Node class for MCTS
 class Node:

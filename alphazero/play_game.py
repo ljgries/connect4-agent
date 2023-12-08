@@ -1,7 +1,7 @@
 import torch
 from model import Connect4Model
 from mcts import Node, run_mcts  # Assuming run_mcts is implemented in mcts.py
-from game import get_init_board, get_valid_moves, place_piece, is_win, is_board_full, draw_board  # Assuming draw_board is a function to visually represent the board
+from game import get_init_board, get_valid_moves, place_piece, is_win, is_board_full  # Assuming draw_board is a function to visually represent the board
 
 def play_game(model, device):
     board = get_init_board()
@@ -36,7 +36,7 @@ def play_game(model, device):
 if __name__ == "__main__":
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     model = Connect4Model(device)
-    model_name = 'liam_model_1.pth' # change to your trained model
+    model_name = 'final_trained_model.pth' # change to your trained model
     model_path = 'models/' + model_name
     model.load_state_dict(torch.load(model_path, map_location=device))
     model.to(device)

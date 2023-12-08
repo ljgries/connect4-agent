@@ -74,11 +74,6 @@ class Connect4Model(nn.Module):
 		return v, p
 
 if __name__ == "__main__":
-	from torch import summary
-	if torch.cuda.is_available():
-		device = torch.device('cuda')
-
+	device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 	model = Connect4Model(device) # instantiate model
-	architecture_summary = summary(model, input_size=(16,3,6,7),verbose=0)
-
-	print(architecture_summary)
+	print(model)

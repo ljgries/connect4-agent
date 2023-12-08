@@ -1,5 +1,4 @@
 import numpy as np
-from view_board import draw_board, render
 
 # 1. get_init_board
 # 2. place_piece
