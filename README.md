@@ -22,4 +22,16 @@ We recommend creating a python 3.8 venv:
 1. `python3.8 -m venv "testenv"`
 2. `source testenv/bin/activate`
 
-Then run `pip3 install -r requirements.txt` to download all dependencies. Note: this operation may take sometime to finish as `torch` is a large package with its own dependencies.
+Then run `pip3 install -r requirements.txt` to download all dependencies. Note: this operation may take some time to finish as `torch` is a large package with its own dependencies.
+
+## Citations
+
+Initial MCTS:
+https://www.youtube.com/watch?v=EB-NJtNERBQ
+
+Initial Alpha-Zero:
+https://youtu.be/t5V197JVemI?si=2Jrzy814NrhAsL9W
+
+Final Alpha-Zero:
+https://github.com/suragnair/alpha-zero-general
+
