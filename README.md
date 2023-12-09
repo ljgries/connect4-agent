@@ -1,20 +1,17 @@
-# connect4-agent
+# Connect4 Agent
 
 Connect 4 "Alpha Zero" agent implemented with MCTS and CNNs.
 
-## Protocol
+## Structure
 
-Changes should be pushed to a separate branch (not main) and merged via pull request.
+We have the follwing three components for our project that build on each other:
 
-## Citations
+- Monte Carlo Tree Search
+- Initial AlphaZero implementation
+- Refined AlphaZero implementation using a general framework
 
-https://www.youtube.com/watch?v=EB-NJtNERBQ (majority of current code base)
+The files for each of these are contained in their own sub-directories along with a README.md with information about how to run various commands. The Python dependencies are defined in the requirements.txt file provided at project root.
 
-https://youtu.be/t5V197JVemI?si=2Jrzy814NrhAsL9W (neural nets / alphazero folder)
+## Installation
 
-### Conversations (post anything here)
-
-Luke - The Alphazero implementation below would be cool to (at least try) to implement, using this codebase as a starting point.
-https://web.stanford.edu/~surag/posts/alphazero.html#:~:text=AlphaGo%20Zero%20is%20trained%20by,framework%20to%20achieve%20stable%20learning
-
-Liam - I'm working on the alphazero implementation, using the above youtube playlist as a starting point. This is an attempt to explore using a deep neural network to predict the next best move from any given state, using mcts to build training data. I have added a train.py file and a play_game.py file, as well as expanded and edited much of the starting code. You can run play_game.py to test the first trained model as well as train.py to test your own.
+Open a terminal and navigate to project root directory (where this file is located). Then run `pip3 install -r requirements.txt` to download all dependencies. Note: this operation may take sometime to finish as `torch` is a large package with its own dependencies.
