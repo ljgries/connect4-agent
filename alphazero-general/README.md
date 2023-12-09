@@ -6,4 +6,4 @@ To train a model for Connect 4 you can run: `python3 main.py`. This uses the neu
 
 ## Play against model
 
-To play against a pre-trained model, you can run: `python3 pit.py`. By default, this will let a human player (you) interactively play 2 games against the model in `models/best.pth.tar` by generating a board and asking you to make moves. You can make changes to this file to evaluate the model's performance against different type of players such as a random player or a one step lookahead player.
+To play against a pre-trained model, you can run: `python3 pit.py` (from this folder).. By default, this will let a human player (you) interactively play 2 games against the model in `models/best.pth.tar` by generating a board and asking you to make moves. You can make changes to this file to evaluate the model's performance against different type of players such as a random player or a one step lookahead player.
