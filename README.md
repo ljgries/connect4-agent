@@ -24,6 +24,10 @@ We recommend creating a python 3.8 venv:
 
 Then run `pip3 install -r requirements.txt` to download all dependencies. Note: this operation may take some time to finish as `torch` is a large package with its own dependencies.
 
+## Presentation
+
+https://docs.google.com/presentation/d/1AtMcs7dRnCU6s8cn9h7qvp5EGaGJiKIb2ypdo14vzOk/edit?usp=sharing
+
 ## Citations
 
 Initial MCTS:
